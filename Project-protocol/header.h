@@ -7,3 +7,4 @@ using std::endl;
 
 #define _LOGFILE "Sokcet Error Log"
 #define ListenQueue 10
+#defien GITTEST "Git Test"
