@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "WinSocket.h"
 #include "Log.h"
 

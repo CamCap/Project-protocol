@@ -1,10 +1,4 @@
-#include "stdafx.h"
 #include "Log.h"
-
-File::File()
-{
-
-}
 
 File::File(string filename)
 {
@@ -45,8 +39,6 @@ bool File::FileWrite(string write)
 	}
 
 	m_file << write << std::endl;
-
-	return true;
 }
 
 bool File::FileRead(string read)
@@ -59,22 +51,6 @@ bool File::FileRead(string read)
 bool File::IsFileOpen()
 {
 	return (m_file.fail() || m_file.bad()) ? false : true;
-}
-
-///////////////////////////////
-
-Log* Log::m_instance = NULL;
-
-const std::string currentDateTime() {
-	time_t     now = time(NULL);
-	struct tm  tstruct;
-	char       buf[80];
-	localtime_s(&tstruct, &now);
-
-	strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
-
-	return buf;
-	//	return std::string(logtime);
 }
 
 ////////////////////////
@@ -103,8 +79,8 @@ void Log::WriteLog(string filename, string log)
 	{
 		File file(filename);
 
-	//	std::pair<string, File> data(filename, file);
-	//	m_logmap.insert(data);
+4		std::pair<string, File> data(filename, file);
+		m_logmap.insert(data);
 	}
 	else
 	{
