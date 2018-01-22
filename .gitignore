@@ -5,6 +5,10 @@
 *.suo
 *.user
 *.sln.docstates
+*.opendb
+*.opensdf
+*.sdf
+*.cachefile
 
 # Build results
 

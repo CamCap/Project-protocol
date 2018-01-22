@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project-protocol", "Project-protocol\Project-protocol.vcxproj", "{D1812E28-DBF1-4501-936E-BD89074D703F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DevTool", "DevTool\DevTool.vcxproj", "{2C2694C0-950F-40DD-BF0A-E58AF97BB225}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MD", "MD", "{468FD4B7-00BC-44A9-B05C-A7525BAB402D}"
+	ProjectSection(SolutionItems) = preProject
+		Markdown\Github for VS.md = Markdown\Github for VS.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70A92433-67AE-4EC2-B1E7-A6B1BB81FC45}
 	EndGlobalSection
 EndGlobal
