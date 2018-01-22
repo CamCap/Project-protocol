@@ -27,12 +27,12 @@ public:
 	explicit WinSocket(SOCKET sock, sockaddr_in addr);
 	~WinSocket();
 	
-protected:
+private:
 	virtual void ErrorHandle();
 
 	WinSocket(SOCKET);
 
-protected:
+private:
 	SOCKET m_socket;
 	sockaddr_in m_addr;
 };

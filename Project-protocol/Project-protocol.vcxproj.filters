@@ -13,41 +13,41 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Socket">
-      <UniqueIdentifier>{b7903563-8161-4be8-8455-cab18d641a75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Socket\헤더 파일">
-      <UniqueIdentifier>{711aa1df-2c1b-4d10-b70d-5181fe75c1cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Socket\소스 파일">
-      <UniqueIdentifier>{9a4284a6-d7d5-4819-94ad-ed55870462a5}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="WinSocket.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SockUser.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketTool.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Queue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
     <ClInclude Include="CircleQueue.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SockObject.h">
-      <Filter>Socket\헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SockUser.h">
-      <Filter>Socket\헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CircleQueue.cpp">
+    <ClCompile Include="WinSocket.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SockUser.cpp">
-      <Filter>Socket\소스 파일</Filter>
+      <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SockObject.cpp">
-      <Filter>Socket\소스 파일</Filter>
+    <ClCompile Include="SocketTool.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
+    <ClCompile Include="Queue.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleQueue.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
