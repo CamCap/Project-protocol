@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <utility>
 #include <ctime>
 using std::ofstream;
 using std::string;
@@ -20,11 +21,11 @@ public:
 	bool FileRead(string read); // 이건 만들 생각 없음
 
 public:
+	File();
 	File(string filename);
 	~File();
 
 private:
-	File() {}
 
 	bool IsFileOpen();
 
@@ -59,14 +60,3 @@ private:
 	std::map<string, File> m_logmap;
 };
 
-Log* Log::m_instance = NULL;
-
-const std::string currentDateTime() {
-	time_t     now = time(0); //현재 시간을 time_t 타입으로 저장
-	struct tm  tstruct;
-	char       buf[80];
-	tstruct = *localtime(&now);
-	strftime(buf, sizeof(buf), "%Y-%m-%d.%X : ", &tstruct); // YYYY-MM-DD.HH:mm:ss 형태의 스트링
-
-	return buf;
-}
