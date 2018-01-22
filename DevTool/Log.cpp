@@ -79,7 +79,7 @@ void Log::WriteLog(string filename, string log)
 	{
 		File file(filename);
 
-		std::pair<string, File> data(filename, file);
+4		std::pair<string, File> data(filename, file);
 		m_logmap.insert(data);
 	}
 	else
