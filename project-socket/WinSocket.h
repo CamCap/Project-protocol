@@ -30,7 +30,7 @@ public:
 protected:
 	virtual void ErrorHandle();
 
-	WinSocket(SOCKET);
+	WinSocket(SOCKET) {}
 
 protected:
 	SOCKET m_socket;
