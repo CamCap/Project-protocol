@@ -12,12 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CircleQueue.h" />
+    <ClInclude Include="IOCP.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="SockObject.h" />
     <ClInclude Include="SockUser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CircleQueue.cpp" />
+    <ClCompile Include="IOCP.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="SockObject.cpp" />
     <ClCompile Include="SockUser.cpp" />
