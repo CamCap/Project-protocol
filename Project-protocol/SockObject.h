@@ -1,5 +1,5 @@
 #pragma once
-#include "WinSocket.h"
+#include "SocketTool.h"
 #include "Queue.h"
 #include "Object.h"
 
@@ -22,7 +22,7 @@ class SockObject
 public:
 	virtual bool Recv(char* data) = 0;
 	virtual bool Send(char* data) = 0;
-	virtual void CreateSocket() = 0;
+	virtual void ConnectSocket(WinSocket* socket) = 0;
 	virtual bool Register(Object* obj) = 0;
 	virtual void DistorySocket() = 0;
 

@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "WinSocket.h"
-#include "Log.h"
 
 WinSocket::WinSocket()
 {
@@ -24,7 +23,7 @@ BOOL WinSocket::CreateSocket()
 
 	if (m_socket == INVALID_SOCKET)
 	{
-		ErrorHandle();
+		//ErrorHandle();
 		return false;
 	}
 
@@ -37,7 +36,7 @@ BOOL WinSocket::DestorySocket()
 
 	if (closesocket(m_socket) == INVALID_SOCKET)
 	{
-		Log::Instance()->WriteLog(_LOGFILE, "Close Socket Error, Why?");
+		//Log::Instance()->WriteLog(_LOGFILE, "Close Socket Error, Why?");
 		return false;
 	}
 
@@ -57,7 +56,32 @@ void WinSocket::SetAdr(sockaddr_in addr)
 	CopyMemory(&m_socket, &addr, sizeof(sockaddr_in));
 }
 
+BOOL WinSocket::Recv()
+{
+	int result = recv(m_socket, m_buff, MAX_BUFFER, 0);
 
+	if (result == INVALID_SOCKET)
+	{
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+BOOL WinSocket::Send(char* data, int size)
+{
+	int result = send(m_socket, data, size, 0);
+
+	if (result == INVALID_SOCKET)
+	{
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+
+/*
 void WinSocket::ErrorHandle()
 {
 	char wrtiestr[100];
@@ -65,6 +89,7 @@ void WinSocket::ErrorHandle()
 
 	Log::Instance()->WriteLog(_LOGFILE, wrtiestr);
 }
+*/
 
 /*
 const WinSocket* const WinSocket::operator= (const SOCKET sock)

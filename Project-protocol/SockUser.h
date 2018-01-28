@@ -1,6 +1,6 @@
 #pragma once
-#include "header.h"
 #include "SockObject.h"
+#include "CircleQueue.h"
 
 ////2018.01.22
 ////Client ¼ÒÄÏ °´Ã¼
@@ -18,18 +18,20 @@ public:
 public:
 	virtual bool Recv(char* data);
 	virtual bool Send(char* data);
-	virtual void CreateSocket();
+	virtual void ConnectSocket(WinSocket* socket);
 	virtual bool Register(Object* obj);
 	virtual void DistorySocket();
+
+	explicit operator HANDLE() { return (HANDLE)(SOCKET)(*m_socket); }
 
 private:
 
 	void ErrorHandle();
 
 private:
-//	WinSocket* m_recvsock;
+	WinSocket* m_socket;
 //	WinSocket* m_sendsock;
 
-	Queue* m_cirque;
+	CircleQueue m_cirque;
 };
 

@@ -13,9 +13,11 @@ public:
 	//socket이 아닌 wassocket을 쓰자
 	virtual BOOL CreateSocket(); 
 	virtual BOOL DestorySocket();
+	virtual BOOL Recv();
+	virtual BOOL Send(char* data, int size);
 
 public:
-	operator WSAOVERLAPPED() { return m_ovlp; }
+	explicit operator WSAOVERLAPPED() { return m_ovlp; }
 //	operator Overlapped*() { return (SOCKADDR*)&m_addr; }
 
 public:
@@ -25,5 +27,6 @@ public:
 private:
 	WSAOVERLAPPED m_ovlp;
 	DWORD m_iotype;
+	WSABUF recvbuf; // 이러면 WinSocket의 recvbuff랑 중복되는데?
 };
 

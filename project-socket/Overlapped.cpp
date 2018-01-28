@@ -26,7 +26,21 @@ BOOL Overlapped::CreateSocket()
 
 BOOL Overlapped::DestorySocket()
 {
+	if (m_socket == INVALID_SOCKET) return false;
 
+	if (closesocket(m_socket) == INVALID_SOCKET)
+	{
+		//Log::Instance()->WriteLog(_LOGFILE, "Close Socket Error, Why?");
+		return false;
+	}
 
 	return TRUE;
+}
+
+BOOL Overlapped::Recv()
+{
+	WSABUF
+	if (m_socket == INVALID_SOCKET) return false;
+
+	int reuslt = WSARecv(m_socket, m_buff, )
 }

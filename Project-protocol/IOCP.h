@@ -1,8 +1,9 @@
 #pragma once
-#include <Windows.h>
-#include <winsock2.h>
 #include <process.h>
-#include "WinSocket.h"
+#include "UserContainer.h"
+#include "Log.h"
+#include "SocketTool.h"
+#include "Overlapped.h"
 #define MAX_WORKER_THREAD 5
 
 ////20180123
@@ -23,18 +24,19 @@ public:
 	BOOL IsEndIOCP() { return m_isend; }
 
 
-	BOOL RegisterCompletionPort(WinSocket* lpPerSocketContext);
-	BOOL GetCompletionStatus(DWORD* pOutCompletionKey, LPDWORD pdwOutBytesTransferred, WSAOVERLAPPED** pOutOverlapped, int* pErrCode = NULL, DWORD dwWaitingTime = INFINITE);
+	BOOL RegisterCompletionPort(SockUser* lpPerSocketContext);
+	BOOL GetCompletionStatus(LPDWORD pdwOutBytesTransferred, DWORD* pOutCompletionKey, WSAOVERLAPPED** pOutOverlapped, int* pErrCode = NULL, DWORD dwWaitingTime = INFINITE);
 	BOOL PostCompletionStatus(DWORD CompleitonKey, DWORD dwBytesTransferred = 0, WSAOVERLAPPED* pOverlapped = NULL, int* pErrCode = NULL);
 
-
+public:
+	static IOCP* GetInstance();
 
 public:
 	IOCP();
 	~IOCP();
 
 private:
-	BOOL CreateListenSocket();
+	//BOOL CreateListenSocket();
 
 	void CreateIOCPThread();
 
@@ -48,9 +50,13 @@ private:
 
 	CRITICAL_SECTION  m_criticalsection;
 
-	HANDLE    m_threads[MAX_WORKER_THREAD];
-	BYTE      m_threadcount;
+	HANDLE m_threads[MAX_WORKER_THREAD];
+	HANDLE m_acceptthread;
+	DWORD m_threadcount;
 
-	BOOL          m_isend;20
+	BOOL m_isend;
+
+private:
+	static IOCP* m_instance;
 };
 

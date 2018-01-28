@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Project-protocol", "Project-protocol\Project-protocol.vcxproj", "{D1812E28-DBF1-4501-936E-BD89074D703F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DEA62013-7898-4BCD-A201-F16031998312} = {DEA62013-7898-4BCD-A201-F16031998312}
+		{534F9B90-3AB9-4BDD-B039-346901E915F4} = {534F9B90-3AB9-4BDD-B039-346901E915F4}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MD", "MD", "{468FD4B7-00BC-44A9-B05C-A7525BAB402D}"
 	ProjectSection(SolutionItems) = preProject

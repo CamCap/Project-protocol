@@ -24,9 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CircleQueue.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="SockObject.h">
       <Filter>Socket\헤더 파일</Filter>
     </ClInclude>
@@ -39,11 +36,11 @@
     <ClInclude Include="IOCP.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="UserContainer.h">
+      <Filter>Socket\헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CircleQueue.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SockUser.cpp">
       <Filter>Socket\소스 파일</Filter>
     </ClCompile>
@@ -55,6 +52,9 @@
     </ClCompile>
     <ClCompile Include="IOCP.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="UserContainer.cpp">
+      <Filter>Socket\소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
