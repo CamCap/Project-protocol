@@ -28,7 +28,6 @@ public:
 	BOOL PostCompletionStatus(DWORD CompleitonKey, DWORD dwBytesTransferred = 0, WSAOVERLAPPED* pOverlapped = NULL, int* pErrCode = NULL);
 
 
-
 public:
 	IOCP();
 	~IOCP();
