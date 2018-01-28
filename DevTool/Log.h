@@ -59,4 +59,3 @@ private:
 	static Log* m_instance;
 	std::map<string, File> m_logmap;
 };
-

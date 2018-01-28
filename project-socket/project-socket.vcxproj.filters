@@ -24,9 +24,6 @@
     <ClInclude Include="header.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Queue.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="SocketTool.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -36,12 +33,15 @@
     <ClInclude Include="Overlapped.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CircleQueue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Queue.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SocketTool.cpp">
@@ -51,6 +51,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Overlapped.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleQueue.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

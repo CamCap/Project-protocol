@@ -1,8 +1,5 @@
 #pragma once
 #include "WinSocket.h"
-#include "Log.h"
-#include "header.h"
-
 //Winsock에 Bind,Listen,Accept,Connect,DisConnect해주는 클래스
 
 class SocketTool
