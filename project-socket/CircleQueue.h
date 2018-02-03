@@ -14,7 +14,7 @@ public:
 	void Push(char* data, short size);
 	Packet* Pop();
 	void InitQueue();
-	bool IsFull();
+	//bool IsFull();
 
 private:
 	char* m_data;

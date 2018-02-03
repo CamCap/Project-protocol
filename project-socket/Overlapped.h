@@ -5,6 +5,10 @@
 //근데 이거 어떻게 만드는지 기억이 안남ㅋㅋㅋ
 
 //wassend랑 wasrecv는 socketobject 객체가 할 것이고...
+//받아서 packet화하는게 필요할듯.
+#define IO_NONE 0
+#define IO_RECV 1
+#define IO_SEND 2
 
 class Overlapped :
 	public WinSocket
@@ -28,5 +32,6 @@ private:
 	WSAOVERLAPPED m_ovlp;
 	DWORD m_iotype;
 	WSABUF recvbuf; // 이러면 WinSocket의 recvbuff랑 중복되는데?
+	WSABUF sendbuf;
 };
 

@@ -36,7 +36,7 @@ public:
 	~WinSocket();
 	
 protected:
-	virtual void ErrorHandle();
+	//virtual void ErrorHandle();
 
 	WinSocket(SOCKET) {}
 
