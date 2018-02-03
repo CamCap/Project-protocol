@@ -2,6 +2,7 @@
 #include <WinSock2.h>
 #include "header.h"
 #include "Log.h"
+#include "Packet.h"
 
 #define MAX_BUFFER 1024
 
@@ -22,7 +23,7 @@ public:
 	void SetAdr(ADDRESS_FAMILY family, int addr, u_short port);
 	void SetAdr(sockaddr_in addr);
 	virtual BOOL Recv();
-	virtual BOOL Send(char* data, int size);
+	virtual BOOL Send(Packet* packet);
 
 public:
 //	virtual const WinSocket* const operator= (const SOCKET sock);
@@ -36,7 +37,7 @@ public:
 	~WinSocket();
 	
 protected:
-	virtual void ErrorHandle();
+	//virtual void ErrorHandle();
 
 	WinSocket(SOCKET) {}
 
@@ -44,6 +45,5 @@ protected:
 	SOCKET m_socket;
 	sockaddr_in m_addr;
 	char m_buff[MAX_BUFFER]; // recv ¹öÆÛ
-	//
 };
 

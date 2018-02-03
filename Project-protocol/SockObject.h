@@ -1,7 +1,7 @@
 #pragma once
 #include "SocketTool.h"
-#include "Queue.h"
 #include "Object.h"
+#include "CircleQueue.h"
 
 //20180122
 //소켓 통신의 First class
@@ -32,6 +32,6 @@ public:
 
 protected:
 	WinSocket m_basesocket;
-	Queue* m_queue;
+	CircleQueue m_queue;
 };
 

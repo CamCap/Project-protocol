@@ -26,7 +26,7 @@ public:
 
 private:
 
-	void ErrorHandle();
+	//void ErrorHandle();
 
 private:
 	WinSocket* m_socket;
