@@ -1,5 +1,5 @@
 #pragma once
-#include "WinSocket.h"
+#include "Overlapped.h"
 //Winsock에 Bind,Listen,Accept,Connect,DisConnect해주는 클래스
 
 class SocketTool

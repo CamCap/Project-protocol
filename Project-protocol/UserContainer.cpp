@@ -96,3 +96,12 @@ void UserContainer::Remove_CurUser(SOCKET sock)
 		m_connectuser.erase(it);
 	}
 }
+
+void UserContainer::DisConnect(PER_IO_OVERLAPPED* overlapped)
+{
+	Lock();
+
+	if((overlapped == NULL) || overlapped)
+
+	UnLock();
+}

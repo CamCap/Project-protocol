@@ -12,14 +12,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IOCP.h" />
-    <ClInclude Include="Object.h" />
     <ClInclude Include="SockObject.h" />
     <ClInclude Include="SockUser.h" />
     <ClInclude Include="UserContainer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IOCP.cpp" />
-    <ClCompile Include="Object.cpp" />
     <ClCompile Include="SockObject.cpp" />
     <ClCompile Include="SockUser.cpp" />
     <ClCompile Include="UserContainer.cpp" />

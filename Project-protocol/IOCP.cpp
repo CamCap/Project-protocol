@@ -29,7 +29,8 @@ BOOL IOCP::CreateIOCP()
 
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
 	{
-		Log::Instance()->WriteLog("Project-socket", "WASStartup error");
+		//Log::Instance()->WriteLog("Project-socket", "WASStartup error");
+		ERROR_LOG("WASStartup error");
 		return FALSE;
 	}
 
@@ -40,7 +41,8 @@ BOOL IOCP::CreateIOCP()
 
 	if (m_handle == NULL)
 	{
-		Log::Instance()->WriteLog("Project-socket", "create IOCP handle error");
+		ERROR_LOG("WASStartup error");
+		//Log::Instance()->WriteLog("Project-socket", "create IOCP handle error");
 		CleanUp();
 		return FALSE;
 	}
@@ -96,9 +98,8 @@ BOOL IOCP::RegisterCompletionPort(SockUser* lpPerSocketContext)
 	// 할당된 구조체와 소켓을 IOCP와 연결한다. 
 	if (!CreateIoCompletionPort((HANDLE)lpPerSocketContext, m_handle, (DWORD)lpPerSocketContext, 0))
 	{
-		char errcode[100];
-		wsprintf(errcode, "RegisterCompletionPort Error : %d", WSAGetLastError());
-		Log::Instance()->WriteLog("Project-socket", errcode);
+		//char errcode[100];
+		SOCKET_ERROR_LOG_CODE;
 		
 		UnLock();
 		return FALSE;
@@ -131,7 +132,8 @@ LPOVERLAPPED* lpOverlapped,
 DWORD dwMilliseconds
 */
 
-	BOOL result = GetQueuedCompletionStatus(m_handle, pdwOutBytesTransferred, pOutCompletionKey,
+	BOOL result = GetQueuedCompletionStatus(m_handle, pdwOutBytesTransferred, pOutCompletionKey \
+		, pOutOverlapped, dwWaitingTime);
 
 	return result;
 }
@@ -175,12 +177,12 @@ DWORD WINAPI Accept(LPVOID pAcceptOL)
 		{
 			//setscokopt에 실패했을 때
 
-			Log::Instance()->WriteLog("Project-socket", "connect fail1");
+			ERROR_LOG("connect fail1");
 		}
 	}
 	else // getsockopt 실패시
 	{
-		Log::Instance()->WriteLog("Project-socket", "connect faile2");
+		ERROR_LOG("connect faile2");
 	}
 
 	if (tool.Listen(&listen_socket) == FALSE)
@@ -218,8 +220,33 @@ DWORD WINAPI WorkThread(LPVOID pOL)
 {
 
 	IOCP* iocp = IOCP::GetInstance();
+	DWORD DwNumberBytes = 0;
+	SockUser* pCompletionKey = NULL;
+	SockUser* pOverlapped = NULL;
+	BOOL result = FALSE;
+//
 
-	iocp->GetCompletionStatus()
+	while(true)
+	{
+		result = iocp->GetCompletionStatus(&DwNumberBytes, \
+			(DWORD*)pCompletionKey, reinterpret_cast<WSAOVERLAPPED **>(pOverlapped));
+		수정하자...pOverlapped를 어떻게 수정하지ㅠㅠ
+		if (result) // 정상적으로 실행.
+		{
+			SOCKET_ERROR_LOG_CODE;
+			continue;
+		}
+		else
+		{
+			if (pOverlapped != NULL)
+			{
+				UserContainer::GetInstance()->Remove_CurUser((SOCKET)*pOverlapped);
+			}
+
+			continue;
+		}
+	}
+
 
 	return 0;
 }

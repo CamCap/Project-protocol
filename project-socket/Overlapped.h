@@ -10,6 +10,12 @@
 #define IO_SEND 2
 #define IO_NONE 0
 
+struct PER_IO_OVERLAPPED : public WSAOVERLAPPED 
+{
+	DWORD io_type;
+	WSABUF buf;
+};
+
 class Overlapped :
 	public WinSocket
 {
@@ -22,8 +28,11 @@ public:
 
 	//virtual BOOL Send(c)
 public:
-	explicit operator WSAOVERLAPPED() { return m_ovlp; }
+//	explicit operator WSAOVERLAPPED() { return (WSAOVERLAPPED)m_ovlp; }
 //	operator Overlapped*() { return (SOCKADDR*)&m_addr; }
+
+	void operator =(WinSocket* socket) { m_socket = (SOCKET)*socket; }
+	//operator WSAOVERLAPPED() {return (WSAOVERLAPPED)m_}
 
 public:
 	Overlapped();
@@ -31,12 +40,16 @@ public:
 
 private:
 
+	void  Lock() { EnterCriticalSection(&m_CriticalSection); }
+	void  UnLock() { LeaveCriticalSection(&m_CriticalSection); }
 	//char* GetSendBuff(Packet* packet);
 
 private:
-	WSAOVERLAPPED m_ovlp;
-	DWORD m_iotype;
-	WSABUF recvbuf; // 이러면 WinSocket의 recvbuff랑 중복되는데?
+	PER_IO_OVERLAPPED m_SendOverlapped;
+	PER_IO_OVERLAPPED m_RecvOverlapped;
+
+
+	CRITICAL_SECTION       m_CriticalSection;
 	//WSABUF sendbuf;
 	//char m_sendbuf[MAX_BUFFER]; // 순전히 WSASend를 위한 버퍼..ㅠㅠ...다른 방법을 찾고싶어
 };

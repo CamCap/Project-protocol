@@ -2,8 +2,6 @@
 #include <process.h>
 #include "UserContainer.h"
 #include "Log.h"
-#include "SocketTool.h"
-#include "Overlapped.h"
 #define MAX_WORKER_THREAD 5
 
 ////20180123
@@ -25,7 +23,8 @@ public:
 
 
 	BOOL RegisterCompletionPort(SockUser* lpPerSocketContext);
-	BOOL GetCompletionStatus(LPDWORD pdwOutBytesTransferred, DWORD* pOutCompletionKey, WSAOVERLAPPED** pOutOverlapped, int* pErrCode = NULL, DWORD dwWaitingTime = INFINITE);
+	BOOL GetCompletionStatus(LPDWORD pdwOutBytesTransferred, DWORD* pOutCompletionKey, WSAOVERLAPPED** pOutOverlapped, \
+		int* pErrCode = NULL, DWORD dwWaitingTime = INFINITE); //INFINITE를 설정하면 무한대로 대기한다. 즉 스레드를 대기상태로 만듬
 	BOOL PostCompletionStatus(DWORD CompleitonKey, DWORD dwBytesTransferred = 0, WSAOVERLAPPED* pOverlapped = NULL, int* pErrCode = NULL);
 
 public:

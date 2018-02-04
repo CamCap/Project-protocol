@@ -1,6 +1,5 @@
 #pragma once
 #include "SockObject.h"
-#include "CircleQueue.h"
 
 ////2018.01.22
 ////Client 소켓 객체
@@ -16,22 +15,20 @@ public:
 	~SockUser();
 
 public:
-	virtual bool Recv(char* data);
-	virtual bool Send(char* data);
+	virtual bool Recv();
+	virtual bool Send();
 	virtual void ConnectSocket(WinSocket* socket);
-	virtual bool Register(Object* obj);
+//	virtual bool Register(Object* obj);
+	virtual void ReleaseUser();// 유저 정보 초기화용
 	virtual void DistorySocket();
 
-	explicit operator HANDLE() { return (HANDLE)(SOCKET)(*m_socket); }
-
+	explicit operator HANDLE() { return (HANDLE)(SOCKET)(*m_ovlp); }
+	explicit operator WSAOVERLAPPED() { return (WSAOVERLAPPED)(*m_ovlp); }
 private:
 
-	//void ErrorHandle();
 
 private:
-	WinSocket* m_socket;
-//	WinSocket* m_sendsock;
-
+	Overlapped* m_ovlp;
 	CircleQueue m_cirque;
 };
 

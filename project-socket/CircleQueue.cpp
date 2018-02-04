@@ -11,7 +11,7 @@ CircleQueue::CircleQueue()
 
 CircleQueue::~CircleQueue()
 {
-	delete[] m_data;
+	SAFE_DELETE_ARR(m_data);
 }
 
 //front가 max_queue_length를 넘으려고 할 때, 큐를 초기화

@@ -27,6 +27,7 @@ public:
 	void Add_CurUser(SOCKET sock, SockUser* puser);
 	void Remove_CurUser(SOCKET sock);
 
+	void DisConnect(PER_IO_OVERLAPPED* overlapped);
 //	SockUser* FindUser()
 
 public:

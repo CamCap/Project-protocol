@@ -30,9 +30,6 @@
     <ClInclude Include="SockUser.h">
       <Filter>Socket\헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="IOCP.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -46,9 +43,6 @@
     </ClCompile>
     <ClCompile Include="SockObject.cpp">
       <Filter>Socket\소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="IOCP.cpp">
       <Filter>소스 파일</Filter>

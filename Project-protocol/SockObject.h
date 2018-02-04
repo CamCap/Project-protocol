@@ -1,6 +1,5 @@
 #pragma once
 #include "SocketTool.h"
-#include "Object.h"
 #include "CircleQueue.h"
 
 //20180122
@@ -20,10 +19,10 @@
 class SockObject
 {
 public:
-	virtual bool Recv(char* data) = 0;
-	virtual bool Send(char* data) = 0;
+	virtual bool Recv() = 0;
+	virtual bool Send() = 0;
 	virtual void ConnectSocket(WinSocket* socket) = 0;
-	virtual bool Register(Object* obj) = 0;
+	//virtual bool Register(Object* obj) = 0;
 	virtual void DistorySocket() = 0;
 
 public:
@@ -31,7 +30,9 @@ public:
 	virtual ~SockObject();
 
 protected:
-	WinSocket m_basesocket;
-	CircleQueue m_queue;
+	//WinSocket m_basesocket;
+	//CircleQueue m_queue;
+
+	char m_sendbuf[MAX_BUFFER];
 };
 
