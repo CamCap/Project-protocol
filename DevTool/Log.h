@@ -47,7 +47,7 @@ public:
 
 public:
 	void WriteLog(string filename, string log);
-
+	void WriteLog(string filename, int errorcode);
 public:
 	Log();
 	~Log();

@@ -115,3 +115,11 @@ void Log::WriteLog(string filename, string log)
 	}
 }
 
+void Log::WriteLog(string filename, int errorcdoe)
+{
+	char errorlog[100];
+
+	sprintf_s(errorlog, "Socket Error Code : %d", errorcdoe);
+
+	WriteLog(filename, errorlog);
+}

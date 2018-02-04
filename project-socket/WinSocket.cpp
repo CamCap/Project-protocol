@@ -68,9 +68,9 @@ BOOL WinSocket::Recv()
 	return TRUE;
 }
 
-BOOL WinSocket::Send(char* data, int size)
+BOOL WinSocket::Send(Packet* packet)
 {
-	int result = send(m_socket, data, size, 0);
+	int result = send(m_socket, (char*)packet, packet->packet_size, 0);
 
 	if (result == INVALID_SOCKET)
 	{

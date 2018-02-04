@@ -5,10 +5,10 @@
 //근데 이거 어떻게 만드는지 기억이 안남ㅋㅋㅋ
 
 //wassend랑 wasrecv는 socketobject 객체가 할 것이고...
-//받아서 packet화하는게 필요할듯.
-#define IO_NONE 0
+
 #define IO_RECV 1
 #define IO_SEND 2
+#define IO_NONE 0
 
 class Overlapped :
 	public WinSocket
@@ -18,8 +18,9 @@ public:
 	virtual BOOL CreateSocket(); 
 	virtual BOOL DestorySocket();
 	virtual BOOL Recv();
-	virtual BOOL Send(char* data, int size);
+	virtual BOOL Send(Packet* packet);
 
+	//virtual BOOL Send(c)
 public:
 	explicit operator WSAOVERLAPPED() { return m_ovlp; }
 //	operator Overlapped*() { return (SOCKADDR*)&m_addr; }
@@ -29,9 +30,14 @@ public:
 	virtual ~Overlapped();
 
 private:
+
+	//char* GetSendBuff(Packet* packet);
+
+private:
 	WSAOVERLAPPED m_ovlp;
 	DWORD m_iotype;
 	WSABUF recvbuf; // 이러면 WinSocket의 recvbuff랑 중복되는데?
-	WSABUF sendbuf;
+	//WSABUF sendbuf;
+	//char m_sendbuf[MAX_BUFFER]; // 순전히 WSASend를 위한 버퍼..ㅠㅠ...다른 방법을 찾고싶어
 };
 
