@@ -23,7 +23,9 @@ public:
 	virtual void DistorySocket();
 
 	explicit operator HANDLE() { return (HANDLE)(SOCKET)(*m_ovlp); }
-	explicit operator WSAOVERLAPPED() { return (WSAOVERLAPPED)(*m_ovlp); }
+	explicit operator SOCKET() { return (SOCKET)(*m_ovlp); }
+
+	//explicit operator WSAOVERLAPPED() { return (WSAOVERLAPPED)(*m_ovlp); }
 private:
 
 

@@ -222,7 +222,7 @@ DWORD WINAPI WorkThread(LPVOID pOL)
 	IOCP* iocp = IOCP::GetInstance();
 	DWORD DwNumberBytes = 0;
 	SockUser* pCompletionKey = NULL;
-	SockUser* pOverlapped = NULL;
+	PER_IO_OVERLAPPED* pOverlapped = NULL;
 	BOOL result = FALSE;
 //
 
@@ -230,17 +230,22 @@ DWORD WINAPI WorkThread(LPVOID pOL)
 	{
 		result = iocp->GetCompletionStatus(&DwNumberBytes, \
 			(DWORD*)pCompletionKey, reinterpret_cast<WSAOVERLAPPED **>(pOverlapped));
-		수정하자...pOverlapped를 어떻게 수정하지ㅠㅠ
+		
+		//수정하자...pOverlapped를 어떻게 수정하지ㅠㅠ
 		if (result) // 정상적으로 실행.
 		{
-			SOCKET_ERROR_LOG_CODE;
-			continue;
+			//SOCKET_ERROR_LOG_CODE;
+			//continue;
+
+			//if((int)pCompletionKey->)
+
+			if (pOverlapped == NULL) continue;
 		}
 		else
 		{
 			if (pOverlapped != NULL)
 			{
-				UserContainer::GetInstance()->Remove_CurUser((SOCKET)*pOverlapped);
+				UserContainer::GetInstance()->Remove_CurUser((SOCKET)*pCompletionKey);
 			}
 
 			continue;
