@@ -33,6 +33,6 @@ protected:
 	//WinSocket m_basesocket;
 	//CircleQueue m_queue;
 
-	char m_sendbuf[MAX_BUFFER];
+	
 };
 

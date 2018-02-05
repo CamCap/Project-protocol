@@ -20,17 +20,23 @@ public:
 	virtual void ConnectSocket(WinSocket* socket);
 //	virtual bool Register(Object* obj);
 	virtual void ReleaseUser();// 유저 정보 초기화용
-	virtual void DistorySocket();
+	virtual void DistorySocket(); //소켓 파괴
+
+	BOOL PacketProcess(int size);
 
 	explicit operator HANDLE() { return (HANDLE)(SOCKET)(*m_ovlp); }
 	explicit operator SOCKET() { return (SOCKET)(*m_ovlp); }
 
+
 	//explicit operator WSAOVERLAPPED() { return (WSAOVERLAPPED)(*m_ovlp); }
 private:
 
+	void  Lock() { EnterCriticalSection(&m_CriticalSection); }
+	void  UnLock() { LeaveCriticalSection(&m_CriticalSection); }
 
 private:
 	Overlapped* m_ovlp;
 	CircleQueue m_cirque;
+	CRITICAL_SECTION       m_CriticalSection;
 };
 

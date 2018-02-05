@@ -33,10 +33,11 @@ SockUser* UserContainer::Pop_EmptyUser()
 	//SockUser* pUser = NULL;
 
 	Lock();
+	SCOPE_EXIT(UnLock(););
 
 	if (m_emptyuser.size() == 0)
 	{
-		UnLock();
+		//UnLock();
 		return NULL;
 	}
 
@@ -46,7 +47,7 @@ SockUser* UserContainer::Pop_EmptyUser()
 
 	m_emptyuser.erase(ituser);
 
-	UnLock();
+	//UnLock();
 
 	return *ituser;
 }
@@ -57,18 +58,19 @@ void UserContainer::Push_EmptyUser(SockUser* puser)
 		return;
 
 	Lock();
+	SCOPE_EXIT(UnLock(););
 	
 	std::vector<SockUser*>::iterator it = std::find(m_emptyuser.begin(), m_emptyuser.end(), puser);
 
 	if (it != m_emptyuser.end())
 	{
-		UnLock();
+		//UnLock();
 		return;
 	}
 
 	m_emptyuser.push_back(puser);
 
-	UnLock();
+	//UnLock();
 
 	return;
 }
@@ -101,7 +103,8 @@ void UserContainer::DisConnect(PER_IO_OVERLAPPED* overlapped)
 {
 	Lock();
 
+	SCOPE_EXIT(UnLock(););
 	if((overlapped == NULL) || overlapped)
-
+		여기 수정해야겠네
 	UnLock();
 }

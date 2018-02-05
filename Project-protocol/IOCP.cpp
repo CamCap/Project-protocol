@@ -20,6 +20,7 @@ IOCP::IOCP()
 
 IOCP::~IOCP()
 {
+	CleanUp();
 }
 
 
@@ -55,6 +56,7 @@ BOOL IOCP::CreateIOCP()
 
 void IOCP::CleanUp()
 {
+	DeleteCriticalSection(&m_criticalsection);
 }
 
 void IOCP::CreateIOCPThread()
@@ -94,6 +96,7 @@ BOOL IOCP::RegisterCompletionPort(SockUser* lpPerSocketContext)
 	}
 
 	Lock();
+	SCOPE_EXIT(UnLock(););
 
 	// 할당된 구조체와 소켓을 IOCP와 연결한다. 
 	if (!CreateIoCompletionPort((HANDLE)lpPerSocketContext, m_handle, (DWORD)lpPerSocketContext, 0))
@@ -101,11 +104,11 @@ BOOL IOCP::RegisterCompletionPort(SockUser* lpPerSocketContext)
 		//char errcode[100];
 		SOCKET_ERROR_LOG_CODE;
 		
-		UnLock();
+		//UnLock();
 		return FALSE;
 	}
 
-	UnLock();
+	//UnLock();
 
 	return TRUE;
 }
@@ -245,11 +248,37 @@ DWORD WINAPI WorkThread(LPVOID pOL)
 		{
 			if (pOverlapped != NULL)
 			{
-				UserContainer::GetInstance()->Remove_CurUser((SOCKET)*pCompletionKey);
+				UserContainer::GetInstance()->DisConnect((SOCKET)*pCompletionKey);
 			}
 
 			continue;
 		}
+
+		//이미 연결이 끊김
+		if( (pCompletionKey == NULL) || ((SOCKET)*pCompletionKey == INVALID_SOCKET) ) continue;
+
+		//클라가 연결을 끊음
+		if (DwNumberBytes == 0)
+		{
+			UserContainer::GetInstance()->DisConnect();
+			continue;
+		}
+
+		if (pOverlapped->io_type == IO_RECV)
+		{
+			//리시브 패킷 처리 함수
+			pCompletionKey->PacketProcess(DwNumberBytes);
+		}
+		else if (pOverlapped->io_type == IO_SEND)
+		{
+			//샌드 완료 함수
+			//지금은 특별히 없는 것같은데?
+		}
+		else // IO_NONE 혹은 에러
+		{
+
+		}
+
 	}
 
 

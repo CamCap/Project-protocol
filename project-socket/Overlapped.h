@@ -1,5 +1,6 @@
 #pragma once
 #include "WinSocket.h"
+#include "CircleQueue.h"
 //20180122
 //비동기IO인 Overlapped 객체...
 //근데 이거 어떻게 만드는지 기억이 안남ㅋㅋㅋ
@@ -9,6 +10,8 @@
 #define IO_RECV 1
 #define IO_SEND 2
 #define IO_NONE 0
+
+//class CircleQueue;
 
 struct PER_IO_OVERLAPPED : public WSAOVERLAPPED 
 {
@@ -24,7 +27,9 @@ public:
 	virtual BOOL CreateSocket(); 
 	virtual BOOL DestorySocket();
 	virtual BOOL Recv();
-	virtual BOOL Send(Packet* packet);
+	virtual BOOL Send(BTZPacket* packet);
+
+	BOOL PushQueueData(CircleQueue* queue, int size);
 
 	//virtual BOOL Send(c)
 public:
@@ -40,16 +45,13 @@ public:
 
 private:
 
-	void  Lock() { EnterCriticalSection(&m_CriticalSection); }
-	void  UnLock() { LeaveCriticalSection(&m_CriticalSection); }
 	//char* GetSendBuff(Packet* packet);
 
 private:
 	PER_IO_OVERLAPPED m_SendOverlapped;
 	PER_IO_OVERLAPPED m_RecvOverlapped;
 
-
-	CRITICAL_SECTION       m_CriticalSection;
+	char m_sendbuf[MAX_BUFFER];
 	//WSABUF sendbuf;
 	//char m_sendbuf[MAX_BUFFER]; // 순전히 WSASend를 위한 버퍼..ㅠㅠ...다른 방법을 찾고싶어
 };

@@ -1,5 +1,4 @@
 #pragma once
-#include <WinSock2.h>
 #include "header.h"
 #include "Log.h"
 #include "Packet.h"
@@ -23,7 +22,7 @@ public:
 	void SetAdr(ADDRESS_FAMILY family, int addr, u_short port);
 	void SetAdr(sockaddr_in addr);
 	virtual BOOL Recv();
-	virtual BOOL Send(Packet* packet);
+	virtual BOOL Send(BTZPacket* packet);
 
 public:
 //	virtual const WinSocket* const operator= (const SOCKET sock);

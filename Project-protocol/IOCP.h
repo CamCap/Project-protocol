@@ -1,7 +1,7 @@
 #pragma once
 #include <process.h>
 #include "UserContainer.h"
-#include "Log.h"
+//#include "Log.h"
 #define MAX_WORKER_THREAD 5
 
 ////20180123
@@ -16,7 +16,7 @@ public:
 	BOOL CreateIOCP(); //IOCP研 持失馬切
 	void CleanUp();
 
-	void ReleaseIOCP();
+	//void ReleaseIOCP();
 
 	void SetEndIOCP() { m_isend = TRUE; }
 	BOOL IsEndIOCP() { return m_isend; }

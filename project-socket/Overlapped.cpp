@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Overlapped.h"
+//#include "CircleQueue.h"
 
 
 Overlapped::Overlapped()
@@ -8,9 +9,10 @@ Overlapped::Overlapped()
 	m_RecvOverlapped.buf.len = MAX_BUFFER;
 	m_RecvOverlapped.io_type = IO_RECV;
 
+	m_SendOverlapped.buf.buf = m_sendbuf;
+	m_SendOverlapped.buf.len = MAX_BUFFER;
 	m_SendOverlapped.io_type = IO_SEND;
 
-	InitializeCriticalSection(&m_CriticalSection);
 }
 
 
@@ -63,7 +65,7 @@ BOOL Overlapped::Recv()
 	return TRUE;
 }
 
-BOOL Overlapped::Send(Packet* packet)
+BOOL Overlapped::Send(BTZPacket* packet)
 {
 	if (m_socket == INVALID_SOCKET) return FALSE;
 	//if (m_ovlp.hEvent == NULL) return FALSE;
@@ -73,7 +75,8 @@ BOOL Overlapped::Send(Packet* packet)
 
 	//버퍼로 바꿔야하는데...
 	//sendbuf.buf = GetSendBuff(packet);
-	m_SendOverlapped.buf.buf = (char*)packet;
+//	m_SendOverlapped.buf.buf = (char*)packet;
+	memcpy(m_sendbuf, packet, packet->packet_size);
 	m_SendOverlapped.buf.len = packet->packet_size;
 
 	////sendbuf로 바꿔야해...이거 buff가 두개지 않냐?
@@ -87,6 +90,11 @@ BOOL Overlapped::Send(Packet* packet)
 	m_SendOverlapped.io_type = IO_SEND;
 
 	return TRUE;
+}
+
+BOOL Overlapped::PushQueueData(CircleQueue * queue, int size)
+{
+	return 	queue->Push(m_buff, size);
 }
 
 

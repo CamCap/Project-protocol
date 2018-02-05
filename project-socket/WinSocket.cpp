@@ -68,7 +68,7 @@ BOOL WinSocket::Recv()
 	return TRUE;
 }
 
-BOOL WinSocket::Send(Packet* packet)
+BOOL WinSocket::Send(BTZPacket* packet)
 {
 	int result = send(m_socket, (char*)packet, packet->packet_size, 0);
 
