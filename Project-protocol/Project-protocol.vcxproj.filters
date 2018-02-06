@@ -36,6 +36,12 @@
     <ClInclude Include="UserContainer.h">
       <Filter>Socket\헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="SubPacket.h">
+      <Filter>Socket</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMessage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SockUser.cpp">
@@ -49,6 +55,12 @@
     </ClCompile>
     <ClCompile Include="UserContainer.cpp">
       <Filter>Socket\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMessage.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

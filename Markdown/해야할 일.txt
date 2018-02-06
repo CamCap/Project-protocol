@@ -1,0 +1,6 @@
+UserContainer의 DisConnect 마지막에 메세지 보내기
+SockUser의 PacketProcess 만들기 -> 메세지만들기
+
+
+
+#pragma pack(push) 설명하기

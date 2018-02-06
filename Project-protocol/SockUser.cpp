@@ -58,20 +58,18 @@ void SockUser::ConnectSocket(WinSocket* socket)
 
 }
 
-void SockUser::ReleaseUser()
-{
-	
-}
 
 void SockUser::DistorySocket()
 {
 	m_ovlp->DestorySocket();
 }
 
-BOOL SockUser::PacketProcess(int size)
+BOOL SockUser::RecvGamePacket(int size)
 {
 	Lock();
 	SCOPE_EXIT(UnLock(););
+
+	BTZPacket* packet = NULL;
 
 	if (m_ovlp->PushQueueData(&m_cirque, size) == FALSE)
 	{
@@ -80,16 +78,22 @@ BOOL SockUser::PacketProcess(int size)
 	}
 	while (true)
 	{
-		BTZPacket* packet = m_cirque.GetPacket();
+		packet = m_cirque.GetPacket();
 
-		if (packet == NULL) break;
+		if (packet == NULL) return;
 
 		m_cirque.Pop(packet->packet_size);
   	}
 
 	//UnLock();
 
+	PacketProcess(packet);
+
 	return TRUE;
+}
+
+void SockUser::PacketProcess(BTZPacket* packet)
+{
 }
 
 

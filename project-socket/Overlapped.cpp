@@ -13,6 +13,7 @@ Overlapped::Overlapped()
 	m_SendOverlapped.buf.len = MAX_BUFFER;
 	m_SendOverlapped.io_type = IO_SEND;
 
+	DestorySocket();
 }
 
 
@@ -35,9 +36,14 @@ BOOL Overlapped::DestorySocket()
 {
 	if (m_socket == INVALID_SOCKET) return FALSE;
 
-	shutdown(m_socket, SD_SEND);
+	closesocket (m_socket);
+	m_socket = INVALID_SOCKET;
 
-	m_RecvOverlapped.io_type = IO_NONE;
+	memset(&m_RecvOverlapped, 0, sizeof(m_SendOverlapped));
+	memset(&m_SendOverlapped, 0, sizeof(m_SendOverlapped));
+
+//	m_SendOverlapped.io_type = IO_NONE;
+//	m_RecvOverlapped.io_type = IO_NONE;
 
 	//IOCP¶û PostComponentÇÒ °Í
 

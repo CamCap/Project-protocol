@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <algorithm>
+//#include <WinSock2.h>
 
 #define MAX_USER_COUNT 500
 
@@ -12,6 +13,8 @@
 //SockUser를 미리 생성하고 Pop과 Push를 통해서 관리한다.
 //다중스레드(Accept,WorkThreadAPI)에서 이 객체에 임의의 Push,Pop이 일어날테니 CS를 만들자
 
+typedef std::vector<SockUser*> VECTOR_USER;
+typedef std::map<SOCKET, SockUser*> MAP_USER;
 
 class UserContainer
 {
@@ -27,7 +30,7 @@ public:
 	void Add_CurUser(SOCKET sock, SockUser* puser);
 	void Remove_CurUser(SOCKET sock);
 
-	void DisConnect(PER_IO_OVERLAPPED* overlapped);
+	void DisConnect(SockUser* pUser);
 //	SockUser* FindUser()
 
 public:
@@ -40,8 +43,9 @@ private:
 	void  UnLock() { LeaveCriticalSection(&m_cs); }
 
 private:
-	std::vector<SockUser*> m_emptyuser;
-	std::map<SOCKET, SockUser*> m_connectuser;
+	VECTOR_USER m_emptyuser;
+	MAP_USER m_connectuser;
+
 	CRITICAL_SECTION m_cs;
 
 	SockUser m_user[MAX_USER_COUNT];

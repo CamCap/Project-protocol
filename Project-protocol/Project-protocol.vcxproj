@@ -11,13 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameMessage.h" />
     <ClInclude Include="IOCP.h" />
     <ClInclude Include="SockObject.h" />
     <ClInclude Include="SockUser.h" />
+    <ClInclude Include="SubPacket.h" />
     <ClInclude Include="UserContainer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameMessage.cpp" />
     <ClCompile Include="IOCP.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="SockObject.cpp" />
     <ClCompile Include="SockUser.cpp" />
     <ClCompile Include="UserContainer.cpp" />

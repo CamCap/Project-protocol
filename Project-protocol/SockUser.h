@@ -22,7 +22,8 @@ public:
 	virtual void ReleaseUser();// 유저 정보 초기화용
 	virtual void DistorySocket(); //소켓 파괴
 
-	BOOL PacketProcess(int size);
+	BOOL RecvGamePacket(int size);
+	void PacketProcess(BTZPacket* packet);
 
 	explicit operator HANDLE() { return (HANDLE)(SOCKET)(*m_ovlp); }
 	explicit operator SOCKET() { return (SOCKET)(*m_ovlp); }
@@ -37,6 +38,6 @@ private:
 private:
 	Overlapped* m_ovlp;
 	CircleQueue m_cirque;
-	CRITICAL_SECTION       m_CriticalSection;
+	CRITICAL_SECTION m_CriticalSection;
 };
 

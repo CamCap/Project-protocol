@@ -248,7 +248,7 @@ DWORD WINAPI WorkThread(LPVOID pOL)
 		{
 			if (pOverlapped != NULL)
 			{
-				UserContainer::GetInstance()->DisConnect((SOCKET)*pCompletionKey);
+				UserContainer::GetInstance()->DisConnect(pCompletionKey);
 			}
 
 			continue;
@@ -260,14 +260,14 @@ DWORD WINAPI WorkThread(LPVOID pOL)
 		//클라가 연결을 끊음
 		if (DwNumberBytes == 0)
 		{
-			UserContainer::GetInstance()->DisConnect();
+			UserContainer::GetInstance()->DisConnect(pCompletionKey);
 			continue;
 		}
 
 		if (pOverlapped->io_type == IO_RECV)
 		{
 			//리시브 패킷 처리 함수
-			pCompletionKey->PacketProcess(DwNumberBytes);
+			pCompletionKey->RecvGamePacket(DwNumberBytes);
 		}
 		else if (pOverlapped->io_type == IO_SEND)
 		{
